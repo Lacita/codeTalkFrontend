@@ -7,7 +7,7 @@
           <router-link target="_blank" :to="{name:'articleDetails',params:{articleId:recommend.id}}">
             <p class="title">{{recommend.articleName}}</p>
             <div class="tags">
-              <iv-tag  :color="index | mapTagColor" v-for="(item,index) in recommend.tags" :key="index">{{item}}</iv-tag>
+<!--              <iv-tag  :color="index " v-for="(item,index) in recommend.tags" :key="index">{{item}}</iv-tag>-->
             </div>
             <p class="info">
               <span class="time">{{recommend.createTime}}</span>

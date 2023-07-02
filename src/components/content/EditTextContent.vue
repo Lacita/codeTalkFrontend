@@ -26,20 +26,20 @@
             <mavon-editor ref=md @imgAdd="imgAdd" v-model="article.articleContentMd" :toolbars="toolbars" @change="mavonChangeHandle"/>
           </iv-formItem>
 
-<!--          <iv-formItem label="文章标签：">-->
-<!--            <iv-tag v-for="item in countTags" :key="item" :name="item" closable @on-close="handleClose">{{ item }}</iv-tag >-->
-<!--            <iv-input-->
-<!--              class="input-new-tag"-->
-<!--              v-if="inputVisible"-->
-<!--              v-model="inputValue"-->
-<!--              ref="saveTagInput"-->
-<!--              size="small"-->
-<!--              @keyup.enter.native="handleInputConfirm"-->
-<!--              @blur="handleInputConfirm"-->
-<!--            >-->
-<!--            </iv-input>-->
-<!--            <iv-button v-else size="small" type="dashed" icon="ios-add" @click="showInput">+ 添加标签</iv-button>-->
-<!--          </iv-formItem>-->
+          <iv-formItem label="文章标签：">
+            <iv-tag v-for="item in countTags" :key="item" :name="item" closable @on-close="handleClose">{{ item }}</iv-tag >
+            <iv-input
+              class="input-new-tag"
+              v-if="inputVisible"
+              v-model="inputValue"
+              ref="saveTagInput"
+              size="small"
+              @keyup.enter.native="handleInputConfirm"
+              @blur="handleInputConfirm"
+            >
+            </iv-input>
+            <iv-button v-else size="small" type="dashed" icon="ios-add" @click="showInput">+ 添加标签</iv-button>
+          </iv-formItem>
 
           <iv-formItem label="文章类型：">
             <Select v-model="article.articleType"  >
@@ -97,7 +97,7 @@ export default {
   data: function () {
     return {
       //tag参数
-      countTags: [],
+      countTags: ['JAVA',"嵌入式",'前端'],
       inputVisible: false,
       inputValue: '',
       contentxt:"",
@@ -290,6 +290,12 @@ export default {
       let article = this.article
       article.managerName=userMessage.userName
       article.managerId=userMessage.id
+      let tag = ""
+      for (let i = 0; i < this.countTags.length; i++) {
+        // eslint-disable-next-line no-unused-vars
+        tag += this.countTags[i] + ","
+      }
+      this.article.articleTag = tag
       if (article.articleName === null || article.articleName === '') {
         this.$Message.error('请输入文章名称')
         return
@@ -328,6 +334,12 @@ export default {
       let article = this.article
       article.managerName=userMessage.userName
       article.managerId=userMessage.id
+      let tag = ""
+      for (let i = 0; i < this.countTags.length; i++) {
+        // eslint-disable-next-line no-unused-vars
+        tag += this.countTags[i] + ","
+      }
+      this.article.articleTag = tag
       if (article.articleName === null || article.articleName === '') {
         this.$Message.error('请输入文章名称')
         return
