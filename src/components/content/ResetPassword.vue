@@ -9,20 +9,20 @@
               <div class="ivu-form-item ivu-form-item-required ivu-form-item-error">
                 <label class="ivu-form-item-label">用户名</label>
                   <iv-formItem  prop="name"><!----> <!---->
-                    <iv-input  type="text" placeholder="起一个拉风的名字吧" v-model="form.userName">
+                    <iv-input  type="text" placeholder="请输入要重置的用户" v-model="form.userName">
                     </iv-input>
                   </iv-formItem>
               </div>
               <div class="ivu-form-item ivu-form-item-required ivu-form-item-error">
-                <label class="ivu-form-item-label">密码</label>
+                <label class="ivu-form-item-label">请输入新密码</label>
                   <iv-formItem  prop="password"><!---->
                     <iv-input autocomplete="off"  type="password"  v-model="form.userPassword" placeholder="请输入密码" />
                   </iv-formItem>
               </div>
               <div class="ivu-form-item ivu-form-item-required ivu-form-item-error">
-                <label class="ivu-form-item-label">请再确认密码</label>
+                <label class="ivu-form-item-label">请再确认新密码</label>
                 <iv-formItem  prop="password"><!---->
-                  <iv-input autocomplete="off"  type="password"  v-model="form.userPasswordRetry" placeholder="请再确认密码" />
+                  <iv-input autocomplete="off"  type="password"  v-model="form.userPasswordRetry" placeholder="请输入密码" />
                 </iv-formItem>
               </div>
               <div class="ivu-form-item ivu-form-item-required ivu-form-item-error">
@@ -42,14 +42,14 @@
               </div>
             </iv-form>
             <div class="dev-sign-main-aside">
-              <iv-button  class="ivu-btn ivu-btn-success ivu-btn-long ivu-btn-large" @click="regist"><!---->
+              <iv-button  class="ivu-btn ivu-btn-success ivu-btn-long ivu-btn-large" @click="reset"><!---->
                 <i class="ivu-icon ivu-icon-md-log-in"></i>
-                <span>注册</span>
+                <span>重置</span>
               </iv-button>
               <span class="ivu-input-prefix"> <i class="ivu-icon ivu-icon-ios-mail-outline"></i></span>
               <div class="dev-sign-main-aside-tip">
                 <!--<p><a href="/recover" class="">忘记密码？</a></p>-->
-                <p>已有有账户？ <router-link to="/login" class="">登录</router-link></p>
+                <p>点击切换登录页 <router-link to="/login" class="">登录</router-link></p>
               </div>
             </div>
           </div>
@@ -72,6 +72,7 @@
         form: {
           userName: '',
           userPassword: '',
+          userPasswordRetry:'',
           name:'',
           code:'',
           phone:''
@@ -89,7 +90,7 @@
         }
         let data = qs.stringify(phone)
         this.$http({
-          url: this.$http.adornUrl('/user/sendMessage'),
+          url: this.$http.adornUrl('/user/sendMessageForReset'),
           method: 'post',
           data: data
         }).then(({data}) => {
@@ -100,7 +101,7 @@
           }
         })
       },
-      regist(){
+      reset(){
         // alert("请注意去你的邮箱查收验证码哦");
         if(this.form.userName === null || this.form.userName ===''){
           this.$Message.error('请输入你的账户哦！')
@@ -111,7 +112,7 @@
           return
         }
         if(this.form.userPasswordRetry === null || this.form.userPasswordRetry ===''){
-          this.$Message.error('请确认你的密码哦！')
+          this.$Message.error('请再确认你的密码哦！')
           return
         }
         if(this.form.phone === null || this.form.phone ===''){
@@ -130,12 +131,12 @@
           code:this.form.code
         };
         this.$http({
-          url: this.$http.adornUrl('/user/register'),
+          url: this.$http.adornUrl('/user/resetPassword'),
           method: 'post',
           data: params
         }).then(({data}) => {
           if (data.code === 2000) {
-            this.$Message.success('注册成功，请移步登录页面登录！')
+            this.$Message.success('重置成功，请移步登录页面登录！')
           }else{
             this.$Message.error(data.data)
           }

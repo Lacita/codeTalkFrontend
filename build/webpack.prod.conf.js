@@ -12,6 +12,8 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const PrerenderSPAPlugin = require('prerender-spa-plugin')   //引用插件
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
+// const CompressionPlugin = require('compression-webpack-plugin');
+// const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -50,7 +52,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: utils.assetsPath('css/[name].[contenthash].css'),
       // Setting the following option to `false` will not extract CSS from codesplit chunks.
       // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
-      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`, 
+      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
       // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
       allChunks: true,
     }),
@@ -84,15 +86,15 @@ const webpackConfig = merge(baseWebpackConfig, {
     new PrerenderSPAPlugin({
       // 生成文件的路径，也可以与webpakc打包的一致。
       staticDir: path.join(__dirname, '../dist'),
-      
+
       // 对应自己的路由文件，比如index有参数，就需要写成 /index/param1。
-      routes: ['/', '/articleList','/articles','/codes','/articles/search','/life','/timeline','/article/1','/article/2','/article/3','/article/5','/article/6','/article/7'
-      ,'/article/8','/article/9','/article/10','/article/11','/article/12','/article/13','/article/14','/article/15','/article/16','/article/17'
-      ,'/article/18','/article/19','/article/20','/article/21','/article/22','/article/23','/article/24','/article/25','/article/26','/article/27'
-      ,'/article/28','/article/29','/article/30','/article/31','/article/32','/article/33','/article/34','/article/35','/article/36','/article/37'
-      ,'/article/38','/article/39','/article/40','/article/41','/article/42','/article/43' 
-        ],
-    
+      // routes: ['/', '/articleList','/articles','/codes','/articles/search','/life','/timeline','/article/1','/article/2','/article/3','/article/5','/article/6','/article/7'
+      // ,'/article/8','/article/9','/article/10','/article/11','/article/12','/article/13','/article/14','/article/15','/article/16','/article/17'
+      // ,'/article/18','/article/19','/article/20','/article/21','/article/22','/article/23','/article/24','/article/25','/article/26','/article/27'
+      // ,'/article/28','/article/29','/article/30','/article/31','/article/32','/article/33','/article/34','/article/35','/article/36','/article/37'
+      // ,'/article/38','/article/39','/article/40','/article/41','/article/42','/article/43'
+      //   ],
+
       // 这个很重要，如果没有配置这段，也不会进行预编译
       renderer: new PrerenderSPAPlugin.PuppeteerRenderer({
           inject: {
@@ -138,6 +140,14 @@ const webpackConfig = merge(baseWebpackConfig, {
       children: true,
       minChunks: 3
     }),
+    // new CompressionPlugin({
+    //   filename: '[path].gz[query]', // 目标文件名
+    //   algorithm: 'gzip',  // 压缩算法
+    //   test: productionGzipExtensions, // 满足正则表达式的文件会被压缩
+    //   threshold: 10240, // 只处理比这个值大的资源。按字节计算 10240=10KB
+    //   minRatio: 0.8, // 只有压缩率比这个值小的资源才会被处理
+    //   deleteOriginalAssets: true // 是否删除原资源
+    // }),
 
     // copy custom static assets
     new CopyWebpackPlugin([

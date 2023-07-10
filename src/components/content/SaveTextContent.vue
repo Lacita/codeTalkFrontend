@@ -12,7 +12,7 @@
               :on-exceeded-size="handleMaxSize"
               :before-upload="handleBeforeUpload">
               <iv-button  icon="ios-cloud-upload-outline">上传封面</iv-button>
-              <span v-if = "article.articleHeadPic !== '' ">上传成功</span>
+              <span v-if = "article.articleHeadPic !== '' ">已上传</span>
             </iv-upload>
           </iv-formItem>
 
@@ -252,7 +252,6 @@ export default {
       formData.append('file', file)
       axios({
         url: this.$http.adornUrl('/file/upload'),
-        // url: 'http://127.0.0.1:8090/file/upload',
         method: 'post',
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' }

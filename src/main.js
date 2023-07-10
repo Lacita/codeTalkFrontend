@@ -11,15 +11,12 @@ import 'mavon-editor/dist/css/index.css'
 import VueCookie from 'vue-cookie' // 挂在在全局了
 import VueParticles from 'vue-particles'
 import MetaInfo from 'vue-meta-info'
-import iView from 'view-design'
+
 // iView UI 组件引入
 import {
-  ListItemMeta,
-  ListItem,
-  List,
+  Button,Icon,Card,Select,
   Row,
   Col,
-  Button,
   Input,
   Progress,
   Tag,
@@ -29,19 +26,15 @@ import {
   Menu,
   Submenu,
   MenuItem,
-  Icon,
   Upload,
-  Card,
   LoadingBar,
   Affix,
-  Select,
   Option,
   Form,
   FormItem,
   Carousel,
   CarouselItem,
   DatePicker,
-  DatePickerCell,
   Spin,
   Rate,
   Modal,
@@ -60,9 +53,9 @@ Vue.use(mavonEditor)
 //   defaultCover: 'https://github.com/u3u.png',
 //   productionTip: true,
 // });
-Vue.component('ListItem', ListItem);
-Vue.component('ListItemMeta', ListItemMeta);
-Vue.component('List', List);
+// Vue.component('ListItem', ListItem);
+// Vue.component('ListItemMeta', ListItemMeta);
+// Vue.component('List', List);
 Vue.component('iv-row', Row)
 Vue.component('iv-col', Col)
 Vue.component('iv-card', Card)
@@ -80,12 +73,12 @@ Vue.component('iv-menu-item', MenuItem)
 Vue.component('iv-icon', Icon)
 Vue.component('iv-loadingBar', LoadingBar)
 Vue.component('iv-affix', Affix)
-Vue.component('iv-select', Select)
-Vue.component('iv-option', Option)
+// Vue.component('iv-select', Select)
+Vue.component('Option', Option)
 Vue.component('iv-carousel', Carousel)
 Vue.component('iv-carousel-item', CarouselItem)
 Vue.component('iv-date-picker', DatePicker)
-Vue.component('iv-date-picker-cell', DatePickerCell)
+// Vue.component('iv-date-picker-cell', DatePickerCell)
 Vue.component('iv-spin', Spin)
 Vue.component('iv-rate', Rate)
 Vue.component('iv-upload', Upload)
@@ -94,7 +87,11 @@ Vue.component('iv-formItem', FormItem)
 Vue.component('iv-modal', Modal)
 Vue.component('iv-timelineItem', TimelineItem)
 Vue.component('iv-poptip', Poptip)
-Vue.use(iView)
+Vue.component('Icon',Icon)
+Vue.component('Card',Card)
+Vue.component('Button',Button)
+Vue.component('Select',Select)
+// Vue.use(iView)
 Vue.prototype.$http = httpRequest // Ajax 请求方法
 Vue.prototype.$https = httpRequest // Ajax 请求方法
 Vue.prototype.$Modal = Modal

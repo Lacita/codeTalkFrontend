@@ -27,12 +27,13 @@
               <span class="ivu-input-prefix"> <i class="ivu-icon ivu-icon-ios-mail-outline"></i></span>
               <div class="dev-sign-main-aside-tip">
                 <span class="ivu-input-prefix"> <i class="ivu-icon ivu-icon-ios-mail-outline"></i></span>
-                <p>还没有账户？ <router-link to="/regist" class="">注册</router-link></p>
+                <p>还没有账户？ <router-link to="/regist" class="">注册</router-link><router-link to="/resetPassword" class="" style="float: right">重置密码</router-link></p>
+
               </div>
-              <div class="dev-sign-main-aside-tip">
-                <span class="ivu-input-prefix"> <i class="ivu-icon ivu-icon-ios-mail-outline"></i></span>
-                <p><a href="http://localhost:8090/oauth/render" target="_blank" >Gitee登录</a></p>
-              </div>
+<!--              <div class="dev-sign-main-aside-tip">-->
+<!--                <span class="ivu-input-prefix"> <i class="ivu-icon ivu-icon-ios-mail-outline"></i></span>-->
+<!--                <p><a href="http://localhost:8090/oauth/render" target="_blank" >Gitee登录</a></p>-->
+<!--              </div>-->
             </div>
           </div>
         </div>

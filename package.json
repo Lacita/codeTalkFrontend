@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@moefe/vue-aplayer": "^2.0.0-beta.5",
+    "TagCloud": "^2.0.2",
     "axios": "^0.19.2",
     "highlight.js": "^9.12.0",
     "hls.js": "^0.12.4",
@@ -24,7 +25,6 @@
     "prerender-spa-plugin": "^3.4.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
-    "TagCloud": "^2.0.2",
     "view-design": "^4.5.0-beta.3",
     "vue": "^2.5.2",
     "vue-beautiful-chat": "^2.3.1",
@@ -51,6 +51,7 @@
     "babel-register": "^6.22.0",
     "chalk": "^2.0.1",
     "chromedriver": "^2.27.2",
+    "compression-webpack-plugin": "^10.0.0",
     "copy-webpack-plugin": "^4.0.1",
     "cross-spawn": "^5.0.1",
     "crypto-js": "^4.1.1",

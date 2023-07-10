@@ -27,6 +27,7 @@ import WeakElectrical from '../components/content/WeakElectrical'
 import MyPage from '../components/content/MyPage'
 import AdjustMyContent from '../components/content/AdjustMyContent'
 import TipsArticle from '../components/content/TipsArticle'
+import ResetPassword from '../components/content/ResetPassword'
 
 Vue.use(Router)
 
@@ -72,6 +73,16 @@ const router = new Router({
           components: {
             header: SimpleHeader,
             content: RegistContent,
+            footer: CommonFooter
+          }
+        },
+        //重置密码
+        {
+          path: '/resetPassword',
+          name: 'resetPassword',
+          components: {
+            header: SimpleHeader,
+            content: ResetPassword,
             footer: CommonFooter
           }
         },

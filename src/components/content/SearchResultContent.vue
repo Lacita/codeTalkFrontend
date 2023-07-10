@@ -20,11 +20,11 @@
 <!--                  <div class="live-desc" v-html="article.articleRemark">{{article.articleRemark}}</div>-->
 <!--                </div>-->
 <!--                <div class="live-down">-->
-<!--                  <div class="live-down-left" >-->
-<!--                    <div  class="live-for" v-for="(item,index) in article.tags" :key="item" :name="item"  >-->
-<!--                      <iv-icon type="ios-pricetag" :color="index | mapTagColor" /> {{ item }}-->
-<!--                    </div>-->
-<!--                  </div>-->
+                  <div class="live-down-left" >
+                    <div  class="live-for" v-for="(item,index) in articleList.tags" :key="item" :name="item"  >
+                      <iv-icon type="ios-pricetag" :color="index | mapTagColor" /> {{ item }}
+                    </div>
+                  </div>
 <!--                  <div class="live-down-right">-->
 <!--                    <div class="live-name"><iv-icon type="ios-contact" class="icon"/>{{article.managerName}}</div>-->
 <!--                    <div class="live-time"><iv-icon type="ios-timer-outline" class="icon"/>{{article.createTime}}</div>-->
@@ -61,7 +61,7 @@ export default {
       articleList: [],
       currentPage: 1,
       pageSize: 10,
-      total: 1,
+      total: 0,
       keywords: ''
     }
   },
@@ -79,6 +79,26 @@ export default {
   methods: {
     listSearchArticle () {
       this.keywords = this.$route.query.keywords
+      console.log(this.keywords)
+      this.$http({
+        url: this.$http.adornUrl('/article/search'),
+        method: 'get',
+        params: this.$http.adornParams({keywords: this.keywords,currentPage:1,pageSize:this.pageSize})
+      }).then(({data}) => {
+        if (data.code === 2000) {
+          if(data.data.data!==null){
+            this.articleList = data.data.data
+            this.total = data.data.total
+          }else{
+            this.articleList = null
+            this.total = 0
+          }
+        }
+      })
+    },
+    listSearchArticleByPage () {
+      this.keywords = this.$route.query.keywords
+      console.log(this.keywords)
       this.$http({
         url: this.$http.adornUrl('/article/search'),
         method: 'get',
@@ -90,25 +110,24 @@ export default {
             this.total = data.data.total
           }else{
             this.articleList = null
-            this.total = null
+            this.total = 0
           }
         }
       })
     },
-
     changePage (page) {
       this.currentPage = page
-      this.$router.push({path:this.$route.path,query:{
-        latest: true,
-        pageSize: 10,
-        currentPage: this.currentPage
-      }});
-      this.listArticle()
+//       this.$router.push({path:this.$route.path,query:{
+//         latest: true,
+//         pageSize: 10,
+//         currentPage: this.currentPage
+//       }});
+      this.listSearchArticleByPage()
     },
     changeSize (size) {
       this.pageSize = size
       this.currentPage = 1
-      this.listArticle()
+      this.listSearchArticle(page)
     },
   },
   components: {

@@ -99,7 +99,12 @@ export default {
       },500)
     },
     submit(keywords){
-      this.$router.push({path:'/articles/search',query:{keywords}})
+      let routeData = this.$router.resolve({
+        path: '/articles/search',
+        query: {keywords}
+      })
+      window.open(routeData.href, '_blank')
+
     },
     initMobileMenu () {
       // 显示手机端的菜单
